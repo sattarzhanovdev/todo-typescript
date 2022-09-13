@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Todo_container from 'Components/todo_container';
+import Todo_form from 'Components/todo_form';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom';
+import axios from 'axios'
+import {API} from "./API";
 
-function App() {
+axios.defaults.baseURL = 'http://localhost:3000'
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path='/' element={<Todo_container />}/>
+        <Route path='*' element={<Todo_container />}/>
+        <Route path='/add_todo' element={<Todo_form />}/>
+      </Routes>
     </div>
-  );
+  )
 }
 
 export default App;
