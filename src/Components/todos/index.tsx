@@ -1,9 +1,6 @@
 import React from 'react';
-import {Card, Container, Button, Typography, TextField, Checkbox, Box} from "@mui/material";
+import {Card, Typography, Checkbox, Box} from "@mui/material";
 import {GetTodos} from "../../Helpers";
-import {AiOutlineCheck, AiOutlineClose} from "react-icons/ai";
-import {HiPencil} from 'react-icons/hi'
-import zIndex from "@mui/material/styles/zIndex";
 import {Favorite, FavoriteBorder} from "@mui/icons-material";
 import {API} from "../../API";
 
@@ -12,15 +9,37 @@ const Todos: React.FC = () => {
 
   const setDoneFunc = (id: number) => {
     todos?.forEach((item: any) => {
-      // API.putIsDone(id, {"id": id, "title": item.title, "isDone": item.isDone === true ? false : true})
-      console.log(item.isDone)
+      API.putIsDone(
+        id, 
+        {
+          "id": id, 
+          "title": item.title,
+          "isDone": item.isDone === true ? false : true,
+          "isLiked": item.isLiked
+        } 
+      )
+    })
+  }
+
+  const setLikeFunc = (id: number) => {
+    todos?.forEach((item: any) => {
+      API.putIsDone(
+        id, 
+        {
+          "id": id, 
+          "title": item.title, 
+          "isDone": item.isDone, 
+          "isLiked": item.isLiked ? false : true
+        }
+      )
     })
   }
 
   const add = () => {
     API.postTodos({
       title: "Сделать что-то",
-      isDone: false
+      isDone: false,
+      isLiked: false
     })
   }
   return (
@@ -75,6 +94,10 @@ const Todos: React.FC = () => {
                   checkedIcon={<Favorite />}
                   style={{
                     color: 'blue'
+                  }}
+                  checked={item.isLiked ? true : false}
+                  onClick={() => {
+                    setLikeFunc(item.id)
                   }}
                 />
               </Box>

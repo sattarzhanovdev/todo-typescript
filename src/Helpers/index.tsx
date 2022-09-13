@@ -9,8 +9,8 @@ export const GetTodos = () => {
     API.getTodos()
       .then((res: any) => {
         setTodos(res.data)
+        setText('hi')
       })
-    setText('HI')
   }, [text])
 
   return {

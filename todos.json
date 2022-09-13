@@ -3,22 +3,8 @@
     {
       "id": 1,
       "title": "Сделать что-то",
-      "isDone": true
-    },
-    {
-      "id": 2,
-      "title": "Сделать что-то",
-      "isDone": false
-    },
-    {
-      "id": 3,
-      "title": "Сделать что-то",
-      "isDone": false
-    },
-    {
-      "id": 4,
-      "title": "Сделать что-то",
-      "isDone": false
+      "isDone": false,
+      "isLiked": false
     }
   ]
 }
