@@ -21,6 +21,8 @@ const todoSlice = createSlice({
           completed: false,
         } as Todo,
       }),
+
+      
     },
     removeTodo(state, action: PayloadAction<string>) {
       const index = state.findIndex((todo) => todo.id === action.payload);

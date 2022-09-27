@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
-import todoSlice, { addTodo, removeTodo, setTodoStatus } from "./store/todoSlice";
+import { addTodo, removeTodo, setTodoStatus } from "./store/todoSlice";
 import { Typography, Container, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material'
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import './App.scss'
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+const App: React.FC = () => {
   const [todoDescription, setTodoDescription] = useState("");
  
   const todoList = useSelector((state: any) => state);
   const dispatch = useDispatch<AppDispatch>();
 
-  React.useEffect(() => {
-    todoSlice.action.
-  }, [todoList])
-
-
- 
-
-
-  //Rendering
   return (
-    <Container maxWidth="xs">
+    <Container 
+      maxWidth="xs"
+      style={{
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }}
+    >
       <Typography style={{ textAlign: "center" }} variant="h3">
-        Redux List App
+        Todo list app
       </Typography>
       <TextField
         variant="outlined"
@@ -33,6 +34,9 @@ function App() {
         fullWidth
         onChange={(e) => setTodoDescription(e.target.value)}
         value={todoDescription}
+        style={{
+          marginTop: '25px'
+        }}  
       />
       <Button
         variant="contained"
@@ -41,6 +45,9 @@ function App() {
         onClick={() => {
           dispatch(addTodo(todoDescription));
           setTodoDescription("");
+        }}
+        style={{
+          marginTop: '25px'
         }}
       >
         Add Item
